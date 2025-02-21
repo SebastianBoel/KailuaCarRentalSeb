@@ -96,7 +96,7 @@ public class Main {
             System.out.println("2. Get Car by Registration Number");
             System.out.println("3. Delete car");
             System.out.println("4. Update odometer");
-            System.out.println("5. Show cars by category (mangler implementering):");
+            System.out.println("5. Show cars by category:");
             System.out.print("Choose an option: ");
 
             int choice = scanner.nextInt();

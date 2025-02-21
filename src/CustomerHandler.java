@@ -13,7 +13,7 @@ public class CustomerHandler {
     }
 
     public void createCustomer() {
-        System.out.println("Enter Driver License Number (Something that is easy to remember) :) :");
+        System.out.println("Enter Driver License Number :");
         int licenseNumber = scanner.nextInt();
         scanner.nextLine();
         System.out.print("Enter Name:");
