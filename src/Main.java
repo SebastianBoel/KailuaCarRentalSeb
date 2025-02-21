@@ -91,7 +91,7 @@ public class Main {
     private static void manageCars(CarHandler carHandler, Scanner scanner) {
         boolean back = false;
         while (!back) {
-            System.out.println("\n--- CAR MANAGEMENT ---");
+            System.out.println("\n-- CAR MANAGEMENT --");
             System.out.println("1. Create Car");
             System.out.println("2. Get Car by Registration Number");
             System.out.println("3. Delete car");
