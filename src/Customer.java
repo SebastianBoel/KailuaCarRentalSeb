@@ -1,6 +1,4 @@
 import java.sql.Date;
-import java.sql.*;
-import java.util.*;
 
 public class Customer {
     private int driverLicenceNumber;

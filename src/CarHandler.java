@@ -13,7 +13,7 @@ public class CarHandler {
     }
 
     public void createCar() {
-        System.out.println("Enter Registration Number:(XX99999)(Make some you can remember for easy editing)");
+        System.out.println("Enter Registration Number:(XX99999)(Make something you can remember for easy editing)");
         String regNumber = scanner.nextLine();
         System.out.println("Enter First Registration Date (YYYY-MM-DD):");
         Date firstRegDate = Date.valueOf(scanner.nextLine());

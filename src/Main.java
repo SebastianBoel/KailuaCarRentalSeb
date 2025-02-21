@@ -38,7 +38,7 @@ public class Main {
                     break;
                 case 3:
                     manageRentals(rentalHandler, scanner);
-                    running = false;
+                    break;
 
                 case 0:
                     running = false;
