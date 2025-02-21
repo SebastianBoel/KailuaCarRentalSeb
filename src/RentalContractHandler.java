@@ -29,9 +29,8 @@ public class RentalContractHandler {
             System.out.println("Enter customer driver license number:");
             int licenseNumber = scanner.nextInt();
             scanner.nextLine();
-            System.out.println("Enter contract number:");
-            int contractNumber = scanner.nextInt();
-            scanner.nextLine();
+
+            System.out.println("Contract number:" + rentalContractDAO.getNextContractNumber());
 
             System.out.println("Enter start date and time (YYYY-MM-DD HH:MM):");
             String startDateStr = scanner.nextLine();
@@ -41,14 +40,15 @@ public class RentalContractHandler {
             String endDateStr = scanner.nextLine();
             Timestamp endDateTime = Timestamp.valueOf(endDateStr + ":00");
 
-            System.out.println("Enter current odometer reading:");
-            int odometer = scanner.nextInt();
+            System.out.println("Current odometerreading");
+            int odometer = car.getOdometer();
+            System.out.println(car.getOdometer());
 
             System.out.println("Enter included kilometers:");
             int includedKM = scanner.nextInt();
 
             RentalContract contract = new RentalContract(
-                    contractNumber,
+                    0,
                     regNumber,
                     licenseNumber,
                     startDateTime,

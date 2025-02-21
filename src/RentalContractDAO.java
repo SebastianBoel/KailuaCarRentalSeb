@@ -1,6 +1,4 @@
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class RentalContractDAO {
     private Connection connection;
@@ -9,13 +7,27 @@ public class RentalContractDAO {
         this.connection = connection;
     }
 
+    public int getNextContractNumber() {
+        String query = "SELECT MAX(contractNumber) FROM rentalcontracts";
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+            if (rs.next()) {
+                return rs.getInt(1) + 1; // Get max contractNumber and increment by 1
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 1;
+    }
+
     public void createContract(RentalContract contract) {
+        int contractNumber = getNextContractNumber(); // Get the next available contract number
         String query = "INSERT INTO rentalcontracts (contractNumber, RegistrationNumber, " +
                 "DriverLicenceNumber, StartDateTime, EndDateTime, Odometer, IncludedKM) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setInt(1, contract.getContractNumber());
+            stmt.setInt(1, contractNumber); // Use auto-generated contract number
             stmt.setString(2, contract.getRegistrationNumber());
             stmt.setInt(3, contract.getDriverLicenceNumber());
             stmt.setTimestamp(4, contract.getStartDateTime());
@@ -24,10 +36,9 @@ public class RentalContractDAO {
             stmt.setInt(7, contract.getIncludedKM());
 
             stmt.executeUpdate();
-            System.out.println("Rental contract created successfully!");
+            System.out.println("Rental contract created successfully! Contract Number: " + contractNumber);
         } catch (SQLException e) {
             e.printStackTrace();
-
         }
     }
 }

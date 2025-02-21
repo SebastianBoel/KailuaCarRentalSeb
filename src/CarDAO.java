@@ -123,50 +123,6 @@ public class CarDAO {
             e.printStackTrace();
         }
     }
-
-    public void showCarsByCategory() {
-        System.out.println("Available categories: Luxury, Family, Sport");
-        System.out.println("Enter category to display:");
-        String category = scanner.nextLine();
-
-        String query = "SELECT * FROM car";
-
-        try (PreparedStatement statement = connection.prepareStatement(query);
-             ResultSet resultSet = statement.executeQuery()) {
-
-            boolean foundCars = false;
-            System.out.println("Cars in " + category + " category:");
-
-            while (resultSet.next()) {
-                Car car = new Car(
-                        resultSet.getString("RegistrationNumber"),
-                        resultSet.getDate("Firstregdate"),
-                        resultSet.getInt("Odometer"),
-                        resultSet.getInt("EngineSize"),
-                        resultSet.getBoolean("Automatic"),
-                        resultSet.getBoolean("AC"),
-                        resultSet.getBoolean("CruiseControl"),
-                        resultSet.getBoolean("LeatherSeats"),
-                        resultSet.getInt("Seats"),
-                        resultSet.getString("Brand"),
-                        resultSet.getString("Model"),
-                        resultSet.getString("FuelType")
-                );
-
-                if (car.carCategory(car).equalsIgnoreCase(category)) {
-                    System.out.println(car);
-                    foundCars = true;
-                }
-            }
-
-            if (!foundCars) {
-                System.out.println("No cars found in " + category + " category.");
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Error retrieving cars: " + e.getMessage());
-        }
-    }
 }
 
 
